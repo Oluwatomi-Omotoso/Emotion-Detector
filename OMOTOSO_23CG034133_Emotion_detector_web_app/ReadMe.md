@@ -11,13 +11,14 @@ The project was built using **Python** for the web app and model training, and *
 Detects emotions from:
 
 - Uploaded image files
-- Real time webcam input
+- Webcam input. 
 
 Displays:
 
 - Detected dominant emotion
 - Confidence scores for all emotions.
-- Saves user information and predictions to a local database.
+## NOTE
+- This web app saves your uploaded image to a local database. Now while I have no particular use for your image. This is a public repo, meaning anyone can access that sort of data. I'll implement a work around that keeps your details private to you. 
 
 Includes both:
 
@@ -38,7 +39,7 @@ To test it out on your own machine:
 
 **OR**
 
-You could just try out the live web app I made, you can find it here:
+You could just try out the live web app I made, you can find it here: [Live demo](https://oluwatomi-omotoso-emotion-detector.streamlit.app/)
 
 ## Optional
 
@@ -49,6 +50,9 @@ Here's the dataset I used it for mine: https://www.kaggle.com/datasets/msambare/
 ## Author
 
   Name: Omotoso Oluwatomi
+  
   Matric No.: 23CG034133
+  
   Institution: Covenant University
+  
   Course: COS 313 — Machine Learning & AI Project
