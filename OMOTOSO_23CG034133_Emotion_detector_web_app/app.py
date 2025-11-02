@@ -22,14 +22,29 @@ except Exception:
     deepface_available = False
 
 # Paths
-MODEL_PATH = "./models/emotion_cnn.h5"
-UPLOAD_DIR = "./static/uploads"
-DB_PATH = "./database/app_usage.db"
+# MODEL_PATH = "./models/emotion_cnn.h5"
+# UPLOAD_DIR = "./static/uploads"
+# DB_PATH = "./database/app_usage.db"
+
+# # Ensure folders
+# os.makedirs(UPLOAD_DIR, exist_ok=True)
+# os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+# os.makedirs("models", exist_ok=True)
+
+# Paths
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "emotion_cnn.h5")
+UPLOAD_DIR = os.path.join(BASE_DIR, "static", "uploads")
+DB_DIR = os.path.join(BASE_DIR, "database")
+DB_PATH = os.path.join(DB_DIR, "app_usage.db")
+
 
 # Ensure folders
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-os.makedirs("models", exist_ok=True)
+# ensure DB directory exists
+os.makedirs(DB_DIR, exist_ok=True)
+os.makedirs(os.path.join(BASE_DIR, "models"), exist_ok=True)
 
 st.set_page_config(page_title="Emotion Detection App", layout="centered")
 st.title("🎭 Real-time Emotion Detection")
@@ -193,6 +208,7 @@ if st.button("Show recent usage (last 10)"):
             st.write(f"{r[0]} | {r[1]} | {r[2]} | {r[4]}")
     else:
         st.write("No usage logged yet.")
+
 
 
 
