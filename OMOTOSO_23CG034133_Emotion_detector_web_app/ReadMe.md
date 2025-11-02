@@ -21,7 +21,7 @@ Displays:
 
 Includes both:
 
-- A custom CNN model. (You can find it here: )
+- A custom CNN model. (You can find it here: [Model](https://github.com/Oluwatomi-Omotoso/Emotion-Detector/tree/main/OMOTOSO_23CG034133_Emotion_detector_web_app/models) )
 - A deepFace fallback model (Just in case the CNN model has issues.)
 
 ## How to run it
