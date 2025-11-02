@@ -45,3 +45,10 @@ You could just try out the live web app I made, you can find it here:
 You could train your own model for improved resuls.
 
 Here's the dataset I used it for mine: https://www.kaggle.com/datasets/msambare/fer2013
+
+## Author
+
+Name: Omotoso Oluwatomi
+Matric No.: 23CG034133
+Institution: Covenant University
+Course: COS 313 — Machine Learning & AI Project
