@@ -48,7 +48,7 @@ Here's the dataset I used it for mine: https://www.kaggle.com/datasets/msambare/
 
 ## Author
 
-Name: Omotoso Oluwatomi
-Matric No.: 23CG034133
-Institution: Covenant University
-Course: COS 313 — Machine Learning & AI Project
+  Name: Omotoso Oluwatomi
+  Matric No.: 23CG034133
+  Institution: Covenant University
+  Course: COS 313 — Machine Learning & AI Project
