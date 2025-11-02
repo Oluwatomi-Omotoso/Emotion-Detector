@@ -46,7 +46,8 @@ if os.path.exists(MODEL_PATH):
         model = None
 else:
     st.info(
-        "Oops Tomi's model might not be available at the moment. Not to worry, he's set up DataFace as a substitute (almost as if he knew this could happen)."
+        "Oops Tomi's model might not be available at the moment.
+        Not to worry, he's set up DataFace as a substitute (almost as if he knew this could happen)."
     )
 
 
@@ -193,5 +194,6 @@ if st.button("Show recent usage (last 10)"):
             st.write(f"{r[0]} | {r[1]} | {r[2]} | {r[4]}")
     else:
         st.write("No usage logged yet.")
+
 
 
