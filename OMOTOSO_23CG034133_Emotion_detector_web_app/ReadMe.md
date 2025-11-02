@@ -17,13 +17,14 @@ Displays:
 
 - Detected dominant emotion
 - Confidence scores for all emotions.
-## NOTE
-- This web app saves your uploaded image to a local database. Now while I have no particular use for your image. This is a public repo, meaning anyone can access that sort of data. I'll implement a work around that keeps your details private to you. 
 
 Includes both:
 
 - A custom CNN model. (You can find it here: [Model](https://github.com/Oluwatomi-Omotoso/Emotion-Detector/tree/main/OMOTOSO_23CG034133_Emotion_detector_web_app/models) )
 - A deepFace fallback model (Just in case the CNN model has issues.)
+
+## NOTE
+- This web app saves your uploaded image to a local database. Now while I have no particular use for your image. This is a public repo, meaning anyone can access that sort of data. I'll implement a work around that keeps your details private to you. 
 
 ## How to run it
 
