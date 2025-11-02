@@ -22,11 +22,11 @@ Displays:
 Includes both:
 
 - A custom CNN model. (You can find it here: )
-- A deepFake fallback model (Just in case the CNN model has issues.)
+- A deepFace fallback model (Just in case the CNN model has issues.)
 
 ## How to run it
 
-To test it out lon your own machine:
+To test it out on your own machine:
 
 - Clone the repo:
   git clone https://github.com/Oluwatomi-Omotoso/Emotion-Detector/tree/main/OMOTOSO_23CG034133_Emotion_detector_web_app.git
