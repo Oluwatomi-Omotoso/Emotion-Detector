@@ -6,12 +6,12 @@ import os
 import io
 import sqlite3
 from datetime import datetime
+import traceback
 
-# ML imports
-import tensorflow
-from tensorflow import keras
-from keras.models import load_model
-from keras.preprocessing.image import img_to_array
+# ML imports: use tensorflow.keras to avoid mixing keras/tf.keras
+import tensorflow as tf
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.image import img_to_array
 
 use_deepface = False
 try:
@@ -21,34 +21,39 @@ try:
 except Exception:
     deepface_available = False
 
-# Paths
-# MODEL_PATH = "./models/emotion_cnn.h5"
-# UPLOAD_DIR = "./static/uploads"
-# DB_PATH = "./database/app_usage.db"
-
-# # Ensure folders
-# os.makedirs(UPLOAD_DIR, exist_ok=True)
-# os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-# os.makedirs("models", exist_ok=True)
-
-# Paths
+# Make paths robust: resolve relative to this file's directory
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "models", "emotion_cnn.h5")
 UPLOAD_DIR = os.path.join(BASE_DIR, "static", "uploads")
 DB_DIR = os.path.join(BASE_DIR, "database")
 DB_PATH = os.path.join(DB_DIR, "app_usage.db")
 
-
 # Ensure folders
 os.makedirs(UPLOAD_DIR, exist_ok=True)
-os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 # ensure DB directory exists
 os.makedirs(DB_DIR, exist_ok=True)
 os.makedirs(os.path.join(BASE_DIR, "models"), exist_ok=True)
 
 st.set_page_config(page_title="Emotion Detection App", layout="centered")
-st.title("🎭 Real-time Emotion Detection")
+st.title("😃 Real-time Emotion Detection")
 st.markdown("Upload a photo or use your webcam to detect emotions. (Name is optional)")
+
+# Debugging info to help diagnose path issues
+st.write("Debug info:")
+st.write("Working dir:", os.getcwd())
+st.write("BASE_DIR:", BASE_DIR)
+st.write("MODEL_PATH:", MODEL_PATH)
+st.write("MODEL exists:", os.path.exists(MODEL_PATH))
+try:
+    st.write("models dir listing:", os.listdir(os.path.join(BASE_DIR, "models")))
+except Exception as e:
+    st.write("models dir listing error:", e)
+st.write("DB_PATH:", DB_PATH)
+st.write("DB exists:", os.path.exists(DB_PATH))
+try:
+    st.write("database dir listing:", os.listdir(DB_DIR))
+except Exception as e:
+    st.write("database dir listing error:", e)
 
 # Try load model
 model = None
@@ -57,16 +62,18 @@ if os.path.exists(MODEL_PATH):
         model = load_model(MODEL_PATH)
         st.info("Loaded local trained model.")
     except Exception as e:
-        st.warning(f"Found model file but failed to load: {e}")
+        st.error(f"Found model file but failed to load: {e}")
+        st.text(traceback.format_exc())
         model = None
 else:
     st.info(
-        "🤔 No local model found. Seems Tomi's model's down. Not to worry he's set up Dataface as a substitute."
+        "No local model found at models/emotion_cnn.h5. Falling back to DeepFace if available."
     )
 
 
 # DB functions
 def init_db():
+    # sqlite3 will create the file if it doesn't exist. DB_DIR must exist which we ensured.
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     c.execute(
@@ -154,6 +161,7 @@ if img_file_buffer is not None:
             predicted_emotion, confidence_scores = predict_with_local_model(img, model)
         except Exception as e:
             st.error(f"Local model prediction failed: {e}")
+            st.text(traceback.format_exc())
 
     if (predicted_emotion is None or not confidence_scores) and deepface_available:
         try:
@@ -165,10 +173,11 @@ if img_file_buffer is not None:
             confidence_scores = res.get("emotion", {})
         except Exception as e:
             st.error(f"DeepFace failed: {e}")
+            st.text(traceback.format_exc())
 
     if predicted_emotion is None:
         st.error(
-            "No model available to make a prediction. Please train and place a Keras model at models/emotion_cnn.h5 or enable DeepFace."
+            "No model available to make a prediction. Please place a Keras model at models/emotion_cnn.h5 or ensure DeepFace is installed."
         )
     else:
         # Display
@@ -185,6 +194,9 @@ if img_file_buffer is not None:
                     score_val = float(score)
                 except:
                     score_val = score
+                # handle whether score is fraction or percent
+                if score_val <= 1.0:
+                    score_val *= 100.0
                 st.write(f"{emotion}: {score_val:.2f}%")
 
         # log to DB
@@ -193,6 +205,7 @@ if img_file_buffer is not None:
             st.success("Usage logged to local database.")
         except Exception as e:
             st.error(f"Failed to log usage: {e}")
+            st.text(traceback.format_exc())
 
 # Show basic stats / recent entries
 if st.button("Show recent usage (last 10)"):
@@ -208,9 +221,3 @@ if st.button("Show recent usage (last 10)"):
             st.write(f"{r[0]} | {r[1]} | {r[2]} | {r[4]}")
     else:
         st.write("No usage logged yet.")
-
-
-
-
-
-
