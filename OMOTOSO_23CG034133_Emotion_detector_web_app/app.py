@@ -32,7 +32,7 @@ os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 os.makedirs("models", exist_ok=True)
 
 st.set_page_config(page_title="Emotion Detection App", layout="centered")
-st.title("😃 Real-time Emotion Detection")
+st.title("🎭 Real-time Emotion Detection")
 st.markdown("Upload a photo or use your webcam to detect emotions. (Name is optional)")
 
 # Try load model
@@ -46,7 +46,7 @@ if os.path.exists(MODEL_PATH):
         model = None
 else:
     st.info(
-        "No local model found. Seems Tomi's model's doww. Not to worry he's set up Dataface as a substitute."
+        "🤔 No local model found. Seems Tomi's model's down. Not to worry he's set up Dataface as a substitute."
     )
 
 
@@ -193,6 +193,7 @@ if st.button("Show recent usage (last 10)"):
             st.write(f"{r[0]} | {r[1]} | {r[2]} | {r[4]}")
     else:
         st.write("No usage logged yet.")
+
 
 
 
