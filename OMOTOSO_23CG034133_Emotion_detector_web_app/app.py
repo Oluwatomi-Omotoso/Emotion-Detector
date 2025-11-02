@@ -22,9 +22,9 @@ except Exception:
     deepface_available = False
 
 # Paths
-MODEL_PATH = "models/emotion_cnn.h5"
-UPLOAD_DIR = "static/uploads"
-DB_PATH = "database/app_usage.db"
+MODEL_PATH = "./models/emotion_cnn.h5"
+UPLOAD_DIR = "./static/uploads"
+DB_PATH = "./database/app_usage.db"
 
 # Ensure folders
 os.makedirs(UPLOAD_DIR, exist_ok=True)
@@ -193,4 +193,5 @@ if st.button("Show recent usage (last 10)"):
             st.write(f"{r[0]} | {r[1]} | {r[2]} | {r[4]}")
     else:
         st.write("No usage logged yet.")
+
 
