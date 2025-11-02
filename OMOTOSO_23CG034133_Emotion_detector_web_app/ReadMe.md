@@ -33,7 +33,7 @@ To test it out on your own machine:
 - Clone the repo:
   git clone https://github.com/Oluwatomi-Omotoso/Emotion-Detector/tree/main/OMOTOSO_23CG034133_Emotion_detector_web_app.git
 
-- So you don't break anything, create a virtual environment
+- I suggest you work on it in a virtual environment, just in case you break something.
 - And then install the dependencies:
 
   pip install -r requirements.txt
