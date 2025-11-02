@@ -1,0 +1,9 @@
+streamlit>=1.20
+tensorflow>=2.11
+keras
+numpy
+pillow
+opencv-python-headless
+deepface
+pandas
+scikit-learn
