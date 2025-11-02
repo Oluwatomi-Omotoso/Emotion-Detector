@@ -29,7 +29,7 @@ Includes both:
 To test it out lon your own machine:
 
 - Clone the repo:
-  git clone https://github.com/oluwatomi-omotoso/emotion-detector-app.git
+  git clone https://github.com/Oluwatomi-Omotoso/Emotion-Detector/tree/main/OMOTOSO_23CG034133_Emotion_detector_web_app.git
 
 - So you don't break anything, create a virtual environment
 - And then install the dependencies:
