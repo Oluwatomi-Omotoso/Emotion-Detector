@@ -2,7 +2,7 @@
 
 This web application detects a person's **emotion** either from an uploaded image or a live webcam capture.
 
-Live link here: (url)["https://oluwatomi-omotoso-emotion-detector.streamlit.app/"]
+Live link here: "https://oluwatomi-omotoso-emotion-detector.streamlit.app/"
 
 ---
 
