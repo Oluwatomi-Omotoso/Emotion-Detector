@@ -2,6 +2,8 @@
 
 This web application detects a person's **emotion** either from an uploaded image or a live webcam capture.
 
+Live link here: (url)["https://oluwatomi-omotoso-emotion-detector.streamlit.app/"]
+
 ---
 
 The project was built using **Python** for the web app and model training, and **Streamlit** for hosting. It logs each user's activity (name, image, and prediction result) into a local **SQLite** database
